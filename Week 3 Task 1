@@ -1,0 +1,25 @@
+/*TASK 1*/
+#include <stdio.h>
+#include <stdlib.h>
+
+int parseInt(char string[]) {
+  int result_as_int;
+  result_as_int = atoi(string);
+
+  return result_as_int;
+}
+
+int main(void) {
+
+  /*Initiailize variables*/
+  char str[] = "123 This is a string";
+  int int_from_string;
+
+  /*Get int from string*/
+  int_from_string = parseInt(str);
+
+  /*Print result*/
+  printf("%d\n", int_from_string);
+  
+  return EXIT_SUCCESS;
+}
