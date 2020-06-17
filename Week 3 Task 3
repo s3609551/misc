@@ -1,0 +1,52 @@
+/*TASK 3*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+/*Maximum allowed input size of fgets*/
+#define MAX_CHARS 20
+
+int string_to_int(char str[]) {
+
+  /*Initiailize variables*/
+  int int_from_string;
+  char number[MAX_CHARS] = "";
+  int total = 0;
+
+  /*Iterate through each char in str*/
+  for (int i=0; i<=strlen(str); i++) {
+
+    /*If char is figure, add to number string*/
+    if (str[i] != ',') {
+      strncat(number,&str[i],1);
+    }
+
+    /*if char is ',', convert variable number into int and add to total*/
+    else if (str[i] == ',') {
+      total += atoi(number);
+      strcpy(number, "");   /*Empties array, cannot be reassigned in c */
+    }
+  }
+  /*At the end of the string add any remaining numbers to total*/
+  total += atoi(number);
+  
+  return total;
+}
+
+int main(void){
+
+  /*Initialize variables*/
+  char input[MAX_CHARS];
+  int result_total;
+
+  /*Request and accept user input*/
+  printf("Please enter numbers sperated by commas to sum together (alphabetical characters will be ignored):");
+  fgets(input, MAX_CHARS, stdin);
+
+  /*Call function to seperate values, convert to int and sum total. Print the returned value.*/
+  result_total = string_to_int(input);
+  printf("Sum: %d\n", result_total);
+
+  return EXIT_SUCCESS;
+}
