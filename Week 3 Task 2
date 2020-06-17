@@ -1,0 +1,42 @@
+/*TASK 2*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+/*Takes a string and returns string as an int*/
+int parseInt(char string[]) {
+  int result_as_int;
+  result_as_int = atoi(string);
+
+  return result_as_int;
+}
+
+int main(void) {
+
+  /*Initiailize variables*/
+  char str[] = "150,250,350";
+  int int_from_string;
+  char number[10] = "";
+  int total = 0;
+
+  /*Iterate through each char in str*/
+  for (int i=0; i<=strlen(str); i++) {
+
+    /*If char is figure, add to number string*/
+    if (str[i] != ',') {
+      strncat(number,&str[i],1);
+    }
+
+    /*if char is ',', convert variable number into int and add to total*/
+    else if (str[i] == ',') {
+      total += parseInt(number);
+      strcpy(number, "");   /*Empties array, cannot be reassigned in c */
+    }
+  }
+  /*At the end of the string add any remaining numbers to total*/
+  total += parseInt(number);
+  printf("total: %d", total);
+  
+  return EXIT_SUCCESS;
+}
