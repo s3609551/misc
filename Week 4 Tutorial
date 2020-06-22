@@ -1,0 +1,58 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define ARRAY_LEN 20
+
+int main(void) {
+
+  /*Initialize Variables*/
+	int array_one[ARRAY_LEN], array_two[ARRAY_LEN], temp, i , j;
+	time_t now;
+	
+	/*seed random num gen with current time */
+	now = time(NULL);
+	srand((int)now);
+	
+  /*Loop through arrays and asign random numbers*/
+	for(i=0; i<ARRAY_LEN; i++) {
+		array_one[i] = rand();
+		array_two[i] = rand();
+	}
+	printf("\n\n");
+	
+  /*For each number in both loops, check against all other 
+  *numbers. If number is lesser than, swap both number 
+  *positions*/
+	for(i=0; i<ARRAY_LEN; i++) {
+		for(j=0; j<ARRAY_LEN; j++) {
+			if(array_one[i]>array_one[j]) {
+				temp = array_one[j];
+				array_one[j] = array_one[i];
+				array_one[i] = temp; 
+			}
+			if(array_two[i]>array_two[j]) {
+				temp = array_two[j];
+				array_two[j] = array_two[i];
+				array_two[i] = temp; 
+			}
+		}
+	}
+	
+	/*Print array_one by element*/
+	printf("\nArray One:\n");
+	for(i=0; i<ARRAY_LEN; i++) {
+		printf("%d:\t%d\n", i, array_one[i]);
+	}
+	
+	printf("\nArray Two:\n");
+	for(i=0; i<ARRAY_LEN; i++) {
+		printf("%d:\t%d\n", i, array_two[i]);
+	}
+	
+	printf("\nDifference between each array element:\n");
+	for(i=0; i<ARRAY_LEN; i++) {
+		printf("%d:\t%d\n", i, (array_one[i] > array_two[i] ? array_one[i] - array_two[i] : array_two[i] - array_one[i]));
+	}
+	return EXIT_SUCCESS;
+}
