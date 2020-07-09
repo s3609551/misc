@@ -1,0 +1,40 @@
+struct map create_map(int width, int height, const char map_string[]) {
+    
+    /*Initialize Variables*/
+    int i=0, j=0, k;
+    char *rows[MAXHEIGHT];
+    char *map[MAXHEIGHT][MAXWIDTH];
+    char *token = strtok(map_string, ";");
+    
+    /*tokenize rows*/
+    while(token != NULL ) {
+        normal_output("%s\n", token);
+        rows[i] = token;
+        i++;
+
+        token = strtok(NULL, ";");
+    }
+
+    /*further tokenize rows into cells*/
+    for(j=0; j<i; j++) {
+      normal_output("row: %i\n", j);
+        token = strtok(rows[j], ",");
+        k = 0;
+        while(token != NULL) {
+          normal_output("%s\n", token);
+          map[i][k] = token;
+          k++;
+          token = strtok(NULL, ",");
+        }
+    }
+
+    normal_output("\n%i %i\n", themap.width, themap.height);
+    
+    /*intialize struct and pass it width and height integers*/
+    struct map themap;
+    themap.width = width;
+    themap.height = height;
+
+    normal_output("\ncreate_map() called\n");
+    return themap;
+}
